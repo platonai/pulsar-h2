@@ -27,5 +27,5 @@ public interface SessionFactory {
      * @author Vincent Zhang
      * @date 20200724
      * */
-    default void closeSession(int sessionId) throws SQLException {}
+    void closeSession(int sessionId) throws SQLException;
 }

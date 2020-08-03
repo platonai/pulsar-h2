@@ -5,7 +5,6 @@
  */
 package org.h2.engine;
 
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -360,8 +359,4 @@ public class Engine implements SessionFactory {
         }
     }
 
-    @Override
-    public void closeSession(int sessionId) throws SQLException {
-
-    }
 }

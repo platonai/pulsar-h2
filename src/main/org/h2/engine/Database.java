@@ -1170,26 +1170,7 @@ public class Database implements DataHandler, CastDataProvider {
      * @param name the name of the user defined aggregate function
      * @return the aggregate function or null
      */
-//    public UserAggregate findAggregate(String name) {
-//        return aggregates.get(name);
-//    }
-
-    /**
-     * Get the user defined aggregate function if it exists, or null if not.
-     *
-     * @author Vincent Zhang
-     * @param name the name of the user defined aggregate function
-     * @return the aggregate function or null
-     */
     public UserAggregate findAggregate(String name) {
-        UserAggregate agg = aggregates.get(name);
-        if (agg != null) {
-            return agg;
-        }
-
-        // We support arbitrary "_" in a UDA name, for example, the following functions are the same:
-        // some_fun_(), _____some_fun_(), some______fun()
-        name = name.replaceAll("_", "");
         return aggregates.get(name);
     }
 

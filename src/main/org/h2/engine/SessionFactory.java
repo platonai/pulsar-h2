@@ -12,7 +12,7 @@ import java.sql.SQLException;
  * exists so that the JDBC layer (the client) can be compiled without dependency
  * to the core database engine.
  */
-public interface SessionFactory {
+interface SessionFactory {
 
     /**
      * Create a new session.

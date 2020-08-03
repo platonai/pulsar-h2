@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# export JAVA_HOME=/usr/lib/jvm/java-8-sun/
+export JAVA_HOME=/usr/lib/jvm/java-8-sun/
 
 if [ -z "$JAVA_HOME" ] ; then
   if [ -d "/System/Library/Frameworks/JavaVM.framework/Home" ] ; then

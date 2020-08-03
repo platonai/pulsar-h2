@@ -34,6 +34,9 @@
 #   MAVEN_SKIP_RC - flag to disable loading of mavenrc files
 # ----------------------------------------------------------------------------
 
+export JAVA_HOME=/usr/lib/jvm/java-8-sun/
+export JAVAC=/usr/lib/jvm/java-8-sun/bin/javac
+
 if [ -z "$MAVEN_SKIP_RC" ] ; then
 
   if [ -f /etc/mavenrc ] ; then

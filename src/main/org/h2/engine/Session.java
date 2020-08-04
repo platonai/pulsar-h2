@@ -74,6 +74,8 @@ public class Session extends SessionWithState {
     private static int nextSerialId;
 
     private final int serialId = nextSerialId++;
+    private int commandSequence = 0;
+
     private final Database database;
     private ConnectionInfo connectionInfo;
     private final User user;
@@ -177,6 +179,10 @@ public class Session extends SessionWithState {
      * */
     public int getSerialId() {
         return serialId;
+    }
+
+    public int getCommandSequence() {
+        return commandSequence;
     }
 
     public void setLazyQueryExecution(boolean lazyQueryExecution) {
@@ -554,6 +560,7 @@ public class Session extends SessionWithState {
     @Override
     public synchronized CommandInterface prepareCommand(String sql,
             int fetchSize) {
+        ++commandSequence;
         return prepareLocal(sql);
     }
 
@@ -881,6 +888,13 @@ public class Session extends SessionWithState {
     @Override
     public void close() {
         if (!closed) {
+            // @author Vincent Zhang ivincent.zhang@gmail.com 2020/08/04
+            try {
+                SessionExtended.closeSession(this);
+            } catch (Exception e) {
+                getTrace().debug(e.getMessage());
+            }
+
             try {
                 database.checkPowerOff();
 

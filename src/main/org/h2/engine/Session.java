@@ -24,6 +24,7 @@ import org.h2.command.ddl.Analyze;
 import org.h2.command.dml.Query;
 import org.h2.command.dml.SetTypes;
 import org.h2.constraint.Constraint;
+import org.h2.ext.pulsar.SessionExtended;
 import org.h2.index.Index;
 import org.h2.index.ViewIndex;
 import org.h2.jdbc.JdbcConnection;
@@ -1636,7 +1637,14 @@ public class Session extends SessionWithState {
     public SessionInterface reconnect(boolean write) {
         readSessionState();
         close();
-        Session newSession = Engine.getInstance().createSession(connectionInfo);
+//        Session newSession = Engine.getInstance().createSession(connectionInfo);
+        // @author Vincent Zhang ivincent.zhang@gmail.com 2020/08/04
+        Session newSession = null;
+        try {
+            newSession = (Session) SessionExtended.createSession(connectionInfo);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         newSession.sessionState = sessionState;
         newSession.recreateSessionState();
         if (write) {

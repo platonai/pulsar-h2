@@ -27,6 +27,7 @@ import org.h2.command.CommandInterface;
 import org.h2.command.ddl.CreateTableData;
 import org.h2.command.dml.SetTypes;
 import org.h2.constraint.Constraint;
+import org.h2.ext.pulsar.SessionExtended;
 import org.h2.index.Cursor;
 import org.h2.index.Index;
 import org.h2.index.IndexType;

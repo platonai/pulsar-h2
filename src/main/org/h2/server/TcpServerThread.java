@@ -28,6 +28,7 @@ import org.h2.engine.SysProperties;
 import org.h2.expression.Parameter;
 import org.h2.expression.ParameterInterface;
 import org.h2.expression.ParameterRemote;
+import org.h2.ext.pulsar.SessionExtended;
 import org.h2.jdbc.JdbcSQLException;
 import org.h2.message.DbException;
 import org.h2.result.ResultColumn;
@@ -152,7 +153,10 @@ public class TcpServerThread implements Runnable {
                         ci.setFileEncryptionKey(transfer.readBytes());
                     }
                 }
-                session = Engine.getInstance().createSession(ci);
+
+                // session = Engine.getInstance().createSession(ci);
+                // @author Vincent Zhang ivincent.zhang@gmail.com 2020/08/04
+                session = (Session) SessionExtended.createSession(ci);
                 transfer.setSession(session);
                 server.addConnection(threadId, originalURL, ci.getUserName());
                 trace("Connected");

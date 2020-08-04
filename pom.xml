@@ -2,11 +2,15 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.h2database</groupId>
-  <artifactId>h2</artifactId>
+<!--  <groupId>com.h2database</groupId>-->
+<!--  <artifactId>h2</artifactId>-->
+<!--  <version>1.4.196-SNAPSHOT</version>-->
+
+  <groupId>ai.platon.pulsar</groupId>
+  <artifactId>pulsar-h2</artifactId>
   <version>1.4.196-SNAPSHOT</version>
   <packaging>jar</packaging>
-  <name>H2 Database Engine</name>
+  <name>Pulsar H2 Database Engine</name>
   <url>http://www.h2database.com</url>
   <description>H2 Database Engine</description>
 
@@ -23,10 +27,27 @@
     </license>
   </licenses>
 
+<!--    <scm>-->
+<!--        <connection>scm:git:https://github.com/h2database/h2database</connection>-->
+<!--        <url>https://github.com/h2database/h2database</url>-->
+<!--    </scm>-->
+
   <scm>
-    <connection>scm:git:https://github.com/h2database/h2database</connection>
-    <url>https://github.com/h2database/h2database</url>
+        <connection>scm:git:https://github.com/platonai/pulsar-h2.git</connection>
+        <developerConnection>scm:git:https://github.com/platonai/pulsar-h2.git</developerConnection>
+        <url>https://github.com/platonai/pulsar-h2</url>
   </scm>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </snapshotRepository>
+    <repository>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+    </repository>
+  </distributionManagement>
 
   <developers>
     <developer>
@@ -34,11 +55,18 @@
       <name>Thomas Mueller</name>
       <email>thomas.tom.mueller at gmail dot com</email>
     </developer>
+
+        <developer>
+            <name>Vincent Zhang</name>
+      <email>ivincent.zhang@gmail.com</email>
+      <organization>platon.ai</organization>
+      <timezone>+8</timezone>
+        </developer>
   </developers>
 
   <properties>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <derby.version>10.10.1.1</derby.version>
     <osgi.version>4.2.0</osgi.version>
     <slf4j.version>1.6.0</slf4j.version>
@@ -269,6 +297,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.20.1</version>
         <configuration>
+          <skip>true</skip>
           <includes>
             <include>TestAllJunit.java</include>
           </includes>

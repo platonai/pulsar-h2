@@ -5,15 +5,13 @@
  */
 package org.h2.engine;
 
-import java.io.IOException;
-import java.net.Socket;
-import java.util.ArrayList;
 import org.h2.api.DatabaseEventListener;
 import org.h2.api.ErrorCode;
 import org.h2.api.JavaObjectSerializer;
 import org.h2.command.CommandInterface;
 import org.h2.command.CommandRemote;
 import org.h2.command.dml.SetTypes;
+import org.h2.ext.pulsar.SessionExtended;
 import org.h2.jdbc.JdbcSQLException;
 import org.h2.message.DbException;
 import org.h2.message.Trace;
@@ -34,6 +32,10 @@ import org.h2.util.TempFileDeleter;
 import org.h2.value.CompareMode;
 import org.h2.value.Transfer;
 import org.h2.value.Value;
+
+import java.io.IOException;
+import java.net.Socket;
+import java.util.ArrayList;
 
 /**
  * The client side part of a session when using the server mode. This object
@@ -344,11 +346,14 @@ public class SessionRemote extends SessionWithState implements DataHandler {
             if (openNew) {
                 ci.setProperty("OPEN_NEW", "true");
             }
-            if (sessionFactory == null) {
-                sessionFactory = (SessionFactory) Class.forName(
-                        "org.h2.engine.Engine").getMethod("getInstance").invoke(null);
-            }
-            return sessionFactory.createSession(ci);
+
+            // author: Vincent Zhang
+//            if (sessionFactory == null) {
+//                sessionFactory = (SessionFactory) Class.forName(
+//                        "org.h2.engine.Engine").getMethod("getInstance").invoke(null);
+//            }
+//            return sessionFactory.createSession(ci);
+            return SessionExtended.createSession(ci);
         } catch (Exception re) {
             DbException e = DbException.convert(re);
             if (e.getErrorCode() == ErrorCode.DATABASE_ALREADY_OPEN_1) {

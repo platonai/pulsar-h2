@@ -171,6 +171,10 @@ public class Session extends SessionWithState {
         this.columnNamerConfiguration = ColumnNamerConfiguration.getDefault();
     }
 
+    public int getSerialId() {
+        return serialId;
+    }
+
     public void setLazyQueryExecution(boolean lazyQueryExecution) {
         this.lazyQueryExecution = lazyQueryExecution;
     }

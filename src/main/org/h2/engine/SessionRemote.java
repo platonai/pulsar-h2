@@ -347,11 +347,7 @@ public class SessionRemote extends SessionWithState implements DataHandler {
                 ci.setProperty("OPEN_NEW", "true");
             }
 
-            // author: Vincent Zhang
-//            if (sessionFactory == null) {
-//                sessionFactory = (SessionFactory) Class.forName(
-//                        "org.h2.engine.Engine").getMethod("getInstance").invoke(null);
-//            }
+            // @author Vincent Zhang ivincent.zhang@gmail.com 2020/08/04
 //            return sessionFactory.createSession(ci);
             return SessionExtended.createSession(ci);
         } catch (Exception re) {

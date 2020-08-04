@@ -406,10 +406,23 @@ public class Schema extends DbObjectBase {
      * Try to find a user defined function with this name. This method returns
      * null if no object with this name exists.
      *
+     * @author Vincent Zhang ivincent.zhang@gmail.com 2020/08/04
+     *
      * @param functionAlias the object name
      * @return the object or null
      */
+//    public FunctionAlias findFunction(String functionAlias) {
+//        return functions.get(functionAlias);
+//    }
     public FunctionAlias findFunction(String functionAlias) {
+        FunctionAlias f = functions.get(functionAlias);
+        if (f != null) {
+            return f;
+        }
+
+        // We support arbitrary "_" in a UDF name, for example, the following functions are the same:
+        // some_fun_(), _____some_fun_(), some______fun()
+        functionAlias = functionAlias.replaceAll("_", "");
         return functions.get(functionAlias);
     }
 

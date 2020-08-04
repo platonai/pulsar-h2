@@ -171,6 +171,9 @@ public class Session extends SessionWithState {
         this.columnNamerConfiguration = ColumnNamerConfiguration.getDefault();
     }
 
+    /**
+     * @author Vincent Zhang ivincent.zhang@gmail.com 2020/08/04
+     * */
     public int getSerialId() {
         return serialId;
     }

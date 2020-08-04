@@ -24,8 +24,7 @@ public interface SessionFactory {
 
     /**
      * Close a session and release resources
-     * @author Vincent Zhang
-     * @date 20200724
+     * @author Vincent Zhang ivincent.zhang@gmail.com 2020/08/04
      * */
     void closeSession(int sessionId) throws SQLException;
 }

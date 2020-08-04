@@ -27,7 +27,7 @@ import org.h2.command.CommandInterface;
 import org.h2.command.ddl.CreateTableData;
 import org.h2.command.dml.SetTypes;
 import org.h2.constraint.Constraint;
-import org.h2.ext.pulsar.SessionExtended;
+import org.h2.ext.pulsar.PulsarExtension;
 import org.h2.index.Cursor;
 import org.h2.index.Index;
 import org.h2.index.IndexType;
@@ -1082,9 +1082,6 @@ public class Database implements DataHandler {
         map.put(name, obj);
     }
 
-//    public UserAggregate findAggregate(String name) {
-//        return aggregates.get(name);
-//    }
     /**
      * Get the user defined aggregate function if it exists, or null if not.
      *
@@ -1094,15 +1091,8 @@ public class Database implements DataHandler {
      * @return the aggregate function or null
      */
     public UserAggregate findAggregate(String name) {
-        UserAggregate agg = aggregates.get(name);
-        if (agg != null) {
-            return agg;
-        }
-
-        // We support arbitrary "_" in a UDA name, for example, the following functions are the same:
-        // some_fun_(), _____some_fun_(), some______fun()
-        name = name.replaceAll("_", "");
-        return aggregates.get(name);
+        // return aggregates.get(name);
+        return PulsarExtension.findAggregate(aggregates, name);
     }
 
     /**

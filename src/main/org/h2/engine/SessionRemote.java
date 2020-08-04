@@ -11,7 +11,7 @@ import org.h2.api.JavaObjectSerializer;
 import org.h2.command.CommandInterface;
 import org.h2.command.CommandRemote;
 import org.h2.command.dml.SetTypes;
-import org.h2.ext.pulsar.SessionExtended;
+import org.h2.ext.pulsar.PulsarExtension;
 import org.h2.jdbc.JdbcSQLException;
 import org.h2.message.DbException;
 import org.h2.message.Trace;
@@ -349,7 +349,7 @@ public class SessionRemote extends SessionWithState implements DataHandler {
 
             // @author Vincent Zhang ivincent.zhang@gmail.com 2020/08/04
 //            return sessionFactory.createSession(ci);
-            return SessionExtended.createSession(ci);
+            return PulsarExtension.createSession(ci);
         } catch (Exception re) {
             DbException e = DbException.convert(re);
             if (e.getErrorCode() == ErrorCode.DATABASE_ALREADY_OPEN_1) {

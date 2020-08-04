@@ -20,7 +20,6 @@ import org.h2.api.ErrorCode;
 import org.h2.command.Command;
 import org.h2.engine.ConnectionInfo;
 import org.h2.engine.Constants;
-import org.h2.engine.Engine;
 import org.h2.engine.GeneratedKeysMode;
 import org.h2.engine.Session;
 import org.h2.engine.SessionRemote;
@@ -28,7 +27,7 @@ import org.h2.engine.SysProperties;
 import org.h2.expression.Parameter;
 import org.h2.expression.ParameterInterface;
 import org.h2.expression.ParameterRemote;
-import org.h2.ext.pulsar.SessionExtended;
+import org.h2.ext.pulsar.PulsarExtension;
 import org.h2.jdbc.JdbcSQLException;
 import org.h2.message.DbException;
 import org.h2.result.ResultColumn;
@@ -156,7 +155,7 @@ public class TcpServerThread implements Runnable {
 
                 // session = Engine.getInstance().createSession(ci);
                 // @author Vincent Zhang ivincent.zhang@gmail.com 2020/08/04
-                session = (Session) SessionExtended.createSession(ci);
+                session = (Session) PulsarExtension.createSession(ci);
                 transfer.setSession(session);
                 server.addConnection(threadId, originalURL, ci.getUserName());
                 trace("Connected");

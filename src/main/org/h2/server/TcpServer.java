@@ -24,7 +24,7 @@ import java.util.Set;
 import org.h2.Driver;
 import org.h2.api.ErrorCode;
 import org.h2.engine.Constants;
-import org.h2.ext.pulsar.SessionExtended;
+import org.h2.ext.pulsar.PulsarExtension;
 import org.h2.message.DbException;
 import org.h2.util.JdbcUtils;
 import org.h2.util.NetUtils;
@@ -319,7 +319,7 @@ public class TcpServer implements Service {
         }
 
         // @author Vincent Zhang ivincent.zhang@gmail.com 2020/08/04
-        SessionExtended.shutdownSessionFactory();
+        PulsarExtension.shutdownSessionFactory();
     }
 
     /**

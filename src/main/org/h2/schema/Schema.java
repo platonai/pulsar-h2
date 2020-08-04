@@ -21,6 +21,7 @@ import org.h2.engine.FunctionAlias;
 import org.h2.engine.Session;
 import org.h2.engine.SysProperties;
 import org.h2.engine.User;
+import org.h2.ext.pulsar.PulsarExtension;
 import org.h2.index.Index;
 import org.h2.message.DbException;
 import org.h2.message.Trace;
@@ -411,19 +412,9 @@ public class Schema extends DbObjectBase {
      * @param functionAlias the object name
      * @return the object or null
      */
-//    public FunctionAlias findFunction(String functionAlias) {
-//        return functions.get(functionAlias);
-//    }
     public FunctionAlias findFunction(String functionAlias) {
-        FunctionAlias f = functions.get(functionAlias);
-        if (f != null) {
-            return f;
-        }
-
-        // We support arbitrary "_" in a UDF name, for example, the following functions are the same:
-        // some_fun_(), _____some_fun_(), some______fun()
-        functionAlias = functionAlias.replaceAll("_", "");
-        return functions.get(functionAlias);
+        // return functions.get(functionAlias);
+        return PulsarExtension.findFunction(functions, functionAlias);
     }
 
     /**

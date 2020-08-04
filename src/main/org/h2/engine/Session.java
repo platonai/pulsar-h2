@@ -24,7 +24,7 @@ import org.h2.command.ddl.Analyze;
 import org.h2.command.dml.Query;
 import org.h2.command.dml.SetTypes;
 import org.h2.constraint.Constraint;
-import org.h2.ext.pulsar.SessionExtended;
+import org.h2.ext.pulsar.PulsarExtension;
 import org.h2.index.Index;
 import org.h2.index.ViewIndex;
 import org.h2.jdbc.JdbcConnection;
@@ -890,7 +890,7 @@ public class Session extends SessionWithState {
         if (!closed) {
             // @author Vincent Zhang ivincent.zhang@gmail.com 2020/08/04
             try {
-                SessionExtended.closeSession(this);
+                PulsarExtension.closeSession(this);
             } catch (Exception e) {
                 getTrace().debug(e.getMessage());
             }
@@ -1655,7 +1655,7 @@ public class Session extends SessionWithState {
         // @author Vincent Zhang ivincent.zhang@gmail.com 2020/08/04
         Session newSession = null;
         try {
-            newSession = (Session) SessionExtended.createSession(connectionInfo);
+            newSession = (Session) PulsarExtension.createSession(connectionInfo);
         } catch (Exception e) {
             e.printStackTrace();
         }

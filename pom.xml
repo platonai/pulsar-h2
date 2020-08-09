@@ -297,7 +297,6 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <version>2.20.1</version>
         <configuration>
-          <skip>true</skip>
           <includes>
             <include>TestAllJunit.java</include>
           </includes>

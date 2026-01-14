@@ -15,3 +15,7 @@ test.out.txt
 target/
 src/main/org/h2/res/help.csv
 _tmp*
+
+ext
+!src/main/h2/ext
+!src/main/*

@@ -106,7 +106,8 @@ public class TestCrashAPI extends TestBase implements Runnable {
                 for (StackTraceElement e : mainThread.getStackTrace()) {
                     System.out.println(e.toString());
                 }
-                mainThread.stop(new SQLException("stop"));
+                // mainThread.stop(new SQLException("stop"));
+                mainThread.interrupt();
             }
         }
     }
